@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa del Pascià — Ristorante Egiziano e Marocchino, Cuneo</title>
+<meta name="description" content="Casa del Pascià, ristorante egiziano e marocchino nel cuore di Cuneo. Tajine, falafel, cous cous e il rituale del tè alla menta. 5,0/5 su Tripadvisor.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --teal-deep:#122E29;
+    --teal-mid:#1B4038;
+    --teal-soft:#245349;
+    --gold:#C39A4B;
+    --gold-light:#E7CD94;
+    --cream:#F8F1E1;
+    --sand:#D9B98A;
+    --ink:#0B1917;
+    --shadow: 0 20px 60px -20px rgba(0,0,0,0.55);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--teal-deep);
+    color:var(--cream);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Marcellus',serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+    color:var(--cream);
+  }
+
+  .accent-script{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold-light);
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  .container{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- decorative star ---------- */
+  .star8{
+    display:inline-block;
+    width:14px;height:14px;
+    color:var(--gold);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(18,46,41,0.0);
+    backdrop-filter:blur(0px);
+    transition:background .4s ease, backdrop-filter .4s ease, padding .4s ease, box-shadow .4s ease;
+    padding:26px 0;
+  }
+  header.scrolled{
+    background:rgba(11,25,23,0.86);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    box-shadow:0 10px 30px -15px rgba(0,0,0,0.6);
+    border-bottom:1px solid rgba(195,154,75,0.18);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand img{height:40px;width:auto;transition:height .4s ease;}
+  header.scrolled .brand img{height:32px;}
+  .brand-name{
+    font-family:'Marcellus',serif;
+    font-size:1.05rem;
+    letter-spacing:0.04em;
+  }
+  .brand-name span{display:block;font-family:'Jost',sans-serif;font-size:0.56rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-top:2px;}
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+    font-size:0.86rem;
+    letter-spacing:0.03em;
+  }
+  .nav-links a{
+    position:relative;
+    opacity:0.88;
+    transition:opacity .25s;
+  }
+  .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;left:0;bottom:-6px;
+    width:0;height:1px;background:var(--gold);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 22px;
+    border:1px solid var(--gold);
+    border-radius:2px;
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    transition:background .3s ease, color .3s ease, transform .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--gold);color:var(--ink);transform:translateY(-1px);}
+  .btn-solid{
+    background:var(--gold);
+    color:var(--ink);
+    border-color:var(--gold);
+  }
+  .btn-solid:hover{background:var(--gold-light);border-color:var(--gold-light);}
+
+  .nav-cta{display:none;}
+  @media(min-width:860px){.nav-cta{display:inline-flex;}}
+
+  .burger{display:none;background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer;}
+  @media(max-width:859px){
+    .nav-links{display:none;}
+    .burger{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:150px 24px 90px;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(195,154,75,0.14), transparent 70%),
+      linear-gradient(180deg, var(--teal-deep) 0%, #0F2622 60%, var(--ink) 100%);
+    overflow:hidden;
+  }
+
+  .hero-pattern{
+    position:absolute;
+    inset:0;
+    opacity:0.10;
+    background-image:
+      radial-gradient(circle at 10% 20%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 30% 70%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 70% 15%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 90% 60%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 50% 90%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 85% 90%, var(--gold) 0, transparent 1.5%),
+      radial-gradient(circle at 15% 85%, var(--gold) 0, transparent 1.5%);
+    background-size:600px 600px;
+    pointer-events:none;
+  }
+
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width:760px;
+  }
+
+  .arch-frame{
+    width:min(78vw, 300px);
+    margin-bottom:8px;
+    filter:drop-shadow(0 18px 40px rgba(0,0,0,0.5));
+  }
+
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-top:18px;
+  }
+
+  .hero h1{
+    font-size:clamp(2.8rem, 7vw, 5.2rem);
+    margin-top:14px;
+    line-height:1.02;
+  }
+
+  .hero .accent-script{
+    display:block;
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    margin-top:20px;
+    max-width:520px;
+  }
+
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:42px;
+  }
+
+  .scroll-cue{
+    margin-top:70px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    font-size:0.68rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--sand);
+    opacity:0.7;
+  }
+  .scroll-cue .line{
+    width:1px;height:34px;
+    background:linear-gradient(to bottom, var(--gold), transparent);
+    animation:pulse-line 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse-line{
+    0%,100%{transform:scaleY(1);opacity:0.5;}
+    50%{transform:scaleY(1.3);opacity:1;}
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{padding:120px 0;position:relative;}
+  .section-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 64px;
+  }
+  .section-head .eyebrow{margin-top:0;}
+  .section-head h2{
+    font-size:clamp(2rem,4vw,2.9rem);
+    margin-top:12px;
+  }
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-top:20px;
+  }
+  .divider .rule{width:46px;height:1px;background:var(--gold);opacity:0.6;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background:var(--ink);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:48px;}}
+
+  .about-text .eyebrow{margin-top:0;}
+  .about-text h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:12px;}
+  .about-text p{margin-top:22px;color:var(--sand);font-weight:300;font-size:1.02rem;}
+  .about-text p:first-of-type{margin-top:26px;}
+
+  .about-illustration{
+    position:relative;
+    display:flex;
+    justify-content:center;
+  }
+  .about-illustration svg{width:100%;max-width:380px;}
+
+  .features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-top:48px;
+  }
+  @media(max-width:520px){.features{grid-template-columns:1fr;}}
+  .feature{
+    border:1px solid rgba(195,154,75,0.25);
+    padding:22px 20px;
+    border-radius:2px;
+    background:rgba(195,154,75,0.04);
+  }
+  .feature .star8{margin-bottom:10px;}
+  .feature h4{
+    font-family:'Marcellus',serif;
+    font-size:1rem;
+    color:var(--gold-light);
+    margin-bottom:6px;
+    font-weight:400;
+  }
+  .feature p{font-size:0.9rem;color:var(--sand);margin:0;}
+
+  /* ---------- MENU ---------- */
+  .menu{
+    background:linear-gradient(180deg, var(--ink) 0%, var(--teal-deep) 100%);
+  }
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:rgba(195,154,75,0.18);
+    border:1px solid rgba(195,154,75,0.18);
+  }
+  @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.menu-grid{grid-template-columns:1fr;}}
+
+  .dish{
+    background:var(--teal-deep);
+    padding:44px 32px;
+    position:relative;
+    transition:background .35s ease;
+  }
+  .dish:hover{background:var(--teal-mid);}
+  .dish-tag{
+    font-size:0.66rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:block;
+    margin-bottom:14px;
+  }
+  .dish h3{font-size:1.3rem;margin-bottom:10px;}
+  .dish p{font-size:0.9rem;color:var(--sand);}
+
+  .arch-icon{width:30px;height:38px;margin-bottom:16px;color:var(--gold);opacity:0.85;}
+
+  .menu-note{
+    text-align:center;
+    margin-top:48px;
+    color:var(--sand);
+    font-size:0.9rem;
+  }
+  .menu-note a{color:var(--gold-light);border-bottom:1px solid var(--gold);padding-bottom:1px;}
+
+  /* ---------- EXPERIENCE STRIP ---------- */
+  .strip{
+    background:var(--teal-mid);
+    padding:70px 0;
+    border-top:1px solid rgba(195,154,75,0.2);
+    border-bottom:1px solid rgba(195,154,75,0.2);
+  }
+  .strip-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    text-align:center;
+  }
+  @media(max-width:900px){.strip-grid{grid-template-columns:repeat(2,1fr);}}
+  .strip-item .num{
+    font-family:'Marcellus',serif;
+    font-size:2.4rem;
+    color:var(--gold-light);
+    display:block;
+  }
+  .strip-item .lbl{
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sand);
+    margin-top:6px;
+    display:block;
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--ink);}
+  .rating-badge{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .rating-badge .score{
+    font-family:'Marcellus',serif;
+    font-size:3.4rem;
+    color:var(--gold-light);
+  }
+  .stars{color:var(--gold);font-size:1.1rem;letter-spacing:3px;margin-top:4px;}
+  .rating-badge .count{font-size:0.85rem;color:var(--sand);margin-top:8px;}
+  .rating-badge .count a{color:var(--gold-light);text-decoration:underline;text-decoration-color:rgba(195,154,75,0.5);}
+
+  .review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  @media(max-width:900px){.review-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.review-grid{grid-template-columns:1fr;}}
+
+  .review-card{
+    border:1px solid rgba(195,154,75,0.2);
+    padding:30px 26px;
+    background:rgba(195,154,75,0.03);
+    position:relative;
+  }
+  .review-card .stars{font-size:0.85rem;margin-bottom:14px;display:block;}
+  .review-card p{font-size:0.93rem;color:var(--sand);}
+  .review-card .who{
+    margin-top:18px;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    color:var(--gold-light);
+    font-family:'Marcellus',serif;
+  }
+  .review-card .who span{display:block;color:var(--sand);font-family:'Jost',sans-serif;font-size:0.72rem;margin-top:2px;}
+
+  /* ---------- LOCATION ---------- */
+  .location{
+    background:var(--teal-deep);
+  }
+  .loc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid rgba(195,154,75,0.25);
+  }
+  @media(max-width:860px){.loc-grid{grid-template-columns:1fr;}}
+  .loc-info{
+    padding:56px 48px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .loc-info h2{font-size:2rem;margin-bottom:22px;}
+  .loc-row{
+    display:flex;
+    gap:16px;
+    margin-bottom:22px;
+    align-items:flex-start;
+  }
+  .loc-row .ic{color:var(--gold);flex-shrink:0;margin-top:3px;}
+  .loc-row div p{margin:0;color:var(--sand);font-size:0.95rem;}
+  .loc-row div .label{
+    font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;display:block;
+  }
+  .loc-info .btn{margin-top:14px;align-self:flex-start;}
+  .map-wrap{min-height:380px;position:relative;}
+  .map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;filter:sepia(0.25) saturate(1.1) hue-rotate(140deg) brightness(0.9);}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    padding:90px 0;
+    text-align:center;
+    background:radial-gradient(ellipse 70% 100% at 50% 100%, rgba(195,154,75,0.14), transparent), var(--ink);
+  }
+  .cta-band h2{font-size:clamp(1.9rem,4vw,2.6rem);}
+  .cta-band .accent-script{margin-top:14px;font-size:1.15rem;}
+  .cta-band .hero-ctas{margin-top:36px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    padding:60px 0 30px;
+    border-top:1px solid rgba(195,154,75,0.18);
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:40px;
+  }
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px;}}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .foot-brand img{height:36px;}
+  .foot-col h5{
+    font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+  }
+  .foot-col p, .foot-col a{
+    display:block;color:var(--sand);font-size:0.9rem;margin-bottom:10px;
+  }
+  .foot-col a:hover{color:var(--gold-light);}
+  .foot-bottom{
+    border-top:1px solid rgba(195,154,75,0.12);
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.78rem;
+    color:rgba(217,185,138,0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold-light);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container">
+    <nav>
+      <a href="#top" class="brand">
+        <img src="logo.png" alt="Casa del Pascià">
+        <span class="brand-name">Casa del Pascià<span>Ristorante Egiziano &amp; Marocchino</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#storia">Storia</a>
+        <a href="#menu">Menù</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="#dove">Dove Siamo</a>
+      </div>
+      <a class="btn nav-cta" href="tel:+393297163033">Prenota — 329 716 3033</a>
+      <button class="burger" aria-label="Apri menu" onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
+    </nav>
+  </div>
+  <div id="mobileNav" style="display:none;flex-direction:column;gap:0;background:rgba(11,25,23,0.98);padding:10px 32px 26px;">
+    <a href="#storia" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Storia</a>
+    <a href="#menu" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Menù</a>
+    <a href="#recensioni" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Recensioni</a>
+    <a href="#dove" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Dove Siamo</a>
+    <a class="btn btn-solid" style="margin-top:16px;text-align:center;justify-content:center;" href="tel:+393297163033">Prenota — 329 716 3033</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <svg class="arch-frame" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 340V150C20 70 80 20 150 20C220 20 280 70 280 150V340" stroke="#C39A4B" stroke-width="2"/>
+        <path d="M40 340V155C40 85 90 40 150 40C210 40 260 85 260 155V340" stroke="#C39A4B" stroke-width="1" opacity="0.5"/>
+        <image href="logo.png" x="70" y="55" width="160" height="192" preserveAspectRatio="xMidYMid slice"/>
+      </svg>
+      <span class="eyebrow">Cuneo · Cucina Egiziana e Marocchina</span>
+      <h1>Casa del Pascià</h1>
+      <span class="accent-script">Un varco tra le vie del Cairo e i vicoli di Marrakech, aperto ogni sera nel cuore di Cuneo.</span>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="tel:+393297163033">Chiama e prenota</a>
+        <a class="btn" href="#menu">Scopri il menù</a>
+      </div>
+      <div class="scroll-cue">
+        <span>Scendi</span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="storia">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">La nostra storia</span>
+        <h2>Due terre, una sola tavola</h2>
+        <p>Casa del Pascià nasce dall'incontro di due cucine sorelle: quella egiziana e quella marocchina, portate a Cuneo con le ricette di famiglia e la voglia di far sentire ogni ospite come a casa propria.</p>
+        <p>Chi entra viene accolto tra profumi di cumino e cannella, tessuti e lanterne, e trova un titolare pronto a raccontare ogni piatto nel dettaglio, dalla marinatura del pollo alla scelta delle spezie del tajine.</p>
+        <p>Il rituale del tè alla menta chiude ogni cena come si usa nei riad marocchini: versato da in alto, dolce e caldo, è il momento in cui la sala si ferma un istante.</p>
+
+        <div class="features">
+          <div class="feature">
+            <svg class="star8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 8.5L23 11l-8.5 2.5L12 23l-2.5-9.5L1 11l8.5-2.5z"/></svg>
+            <h4>Cucinato al momento</h4>
+            <p>Ogni piatto viene preparato all'ordine, con verdure e carni fresche.</p>
+          </div>
+          <div class="feature">
+            <svg class="star8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 8.5L23 11l-8.5 2.5L12 23l-2.5-9.5L1 11l8.5-2.5z"/></svg>
+            <h4>Ricette di famiglia</h4>
+            <p>Spezie ed equilibri tramandati, senza scorciatoie.</p>
+          </div>
+          <div class="feature">
+            <svg class="star8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 8.5L23 11l-8.5 2.5L12 23l-2.5-9.5L1 11l8.5-2.5z"/></svg>
+            <h4>Sala per gruppi</h4>
+            <p>Spazi accoglienti, curati e adatti anche a tavolate numerose.</p>
+          </div>
+          <div class="feature">
+            <svg class="star8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 8.5L23 11l-8.5 2.5L12 23l-2.5-9.5L1 11l8.5-2.5z"/></svg>
+            <h4>Rituale del tè</h4>
+            <p>Il tè alla menta versato al tavolo, per chiudere la cena in bellezza.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-illustration reveal">
+        <svg viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 460V220C30 100 100 20 190 20C280 20 350 100 350 220V460" fill="none" stroke="#C39A4B" stroke-width="2"/>
+          <path d="M55 460V225C55 115 115 45 190 45C265 45 325 115 325 225V460" fill="none" stroke="#C39A4B" stroke-width="1" opacity="0.45"/>
+          <!-- pyramids -->
+          <polygon points="120,340 190,220 260,340" fill="#D9B98A" opacity="0.9"/>
+          <polygon points="190,340 240,250 300,340" fill="#C39A4B" opacity="0.55"/>
+          <!-- palm -->
+          <line x1="105" y1="340" x2="105" y2="270" stroke="#245349" stroke-width="6"/>
+          <path d="M105 272 C80 255 65 260 55 245" stroke="#245349" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M105 272 C130 255 145 260 155 245" stroke="#245349" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M105 268 C90 240 90 225 82 210" stroke="#245349" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M105 268 C120 240 120 225 128 210" stroke="#245349" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M105 266 C105 235 105 215 105 200" stroke="#245349" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- star + moon -->
+          <circle cx="220" cy="120" r="34" fill="none"/>
+          <path d="M235 95a34 34 0 1 0 0 50 27 27 0 1 1 0-50z" fill="#C39A4B"/>
+          <path d="M262 108l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#E7CD94"/>
+          <line x1="30" y1="340" x2="350" y2="340" stroke="#C39A4B" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section menu" id="menu">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Dal menù</span>
+        <h2>Sapori che i nostri ospiti raccontano</h2>
+        <div class="divider"><span class="rule"></span><svg class="star8" viewBox="0 0 24 24" fill="#C39A4B"><path d="M12 0l2.5 8.5L23 11l-8.5 2.5L12 23l-2.5-9.5L1 11l8.5-2.5z"/></svg><span class="rule"></span></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="menu-grid reveal">
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Egiziano</span>
+          <h3>Falafel di fave</h3>
+          <p>La nostra versione, a base di fave anziché ceci, fritta al momento: croccante fuori, morbida dentro. Uno dei piatti più richiesti dai nostri ospiti.</p>
+        </div>
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Marocchino</span>
+          <h3>Tajine d'agnello</h3>
+          <p>Carne tenerissima cotta lentamente con carciofi, carote e piselli, speziata con equilibrio: si stacca dall'osso senza fatica.</p>
+        </div>
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Fusion</span>
+          <h3>Tacos di pollo</h3>
+          <p>Pollo marinato, patate e maionese in un tacos croccante: una rilettura originale che sorprende chi non se l'aspetta.</p>
+        </div>
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Marocchino</span>
+          <h3>Cous cous della casa</h3>
+          <p>Semola al vapore con verdure e carne, nella tradizione delle grandi tavolate in famiglia.</p>
+        </div>
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Dolce</span>
+          <h3>Kunafa</h3>
+          <p>Il dolce simbolo del Medio Oriente, filo di pasta dorata e croccante, farcito e profumato di sciroppo.</p>
+        </div>
+        <div class="dish">
+          <svg class="arch-icon" viewBox="0 0 30 38" fill="none"><path d="M2 38V18C2 8 8 2 15 2C22 2 28 8 28 18V38" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dish-tag">Rituale</span>
+          <h3>Tè alla menta</h3>
+          <p>Versato al tavolo, caldo e dolce: il modo marocchino di dire "bentornati" a fine cena.</p>
+        </div>
+      </div>
+      <p class="menu-note reveal">Il menù propone anche una selezione di pizze e panini · <a href="tel:+393297163033">Chiamaci</a> per conoscere i piatti del giorno</p>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <section class="strip">
+    <div class="container strip-grid">
+      <div class="strip-item"><span class="num">5,0</span><span class="lbl">Rating Tripadvisor</span></div>
+      <div class="strip-item"><span class="num">2</span><span class="lbl">Cucine, un solo tavolo</span></div>
+      <div class="strip-item"><span class="num">100%</span><span class="lbl">Piatti preparati al momento</span></div>
+      <div class="strip-item"><span class="num">N°62</span><span class="lbl">tra i ristoranti di Cuneo</span></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews" id="recensioni">
+    <div class="container">
+      <div class="rating-badge reveal">
+        <span class="score">5,0 / 5</span>
+        <span class="stars">★★★★★</span>
+        <span class="count">Basato su 12 recensioni — <a href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">leggi su Tripadvisor ↗</a></span>
+      </div>
+      <div class="review-grid">
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>Accoglienza gentile fin dall'ingresso: falafel di fave sorprendenti, tajine d'agnello morbidissimo e un dolce alle mele e cocco da ricordare.</p>
+          <div class="who">Geetanjli <span>Mondovì · Febbraio 2026</span></div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>Piatti marocchini ed egiziani rivisitati con prodotti freschi, tempi d'attesa contenuti nonostante la cucina a vista, porzioni abbondanti e servizio cordiale.</p>
+          <div class="who">Max <span>Con amici · Febbraio 2026</span></div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>Locale piccolo ma accogliente e pulitissimo, con un titolare pronto a spiegare ogni piatto nel dettaglio. Qualità e quantità hanno convinto fin dalla prima visita.</p>
+          <div class="who">Tony G. <span>Carmagnola · Novembre 2025</span></div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>Un ambiente familiare in cui sentirsi davvero a casa, con piatti marocchini curati in ogni dettaglio: un viaggio autentico tra i sapori del Maghreb.</p>
+          <div class="who">Vacation23502485117 <span>In coppia · Agosto 2025</span></div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>Il tè alla menta accompagna una cena ricca e curata, mentre la musica di sottofondo aiuta a immergersi davvero nell'atmosfera egiziana e marocchina.</p>
+          <div class="who">Carola M. <span>In coppia · Settembre 2025</span></div>
+        </div>
+        <div class="review-card reveal">
+          <span class="stars">★★★★★</span>
+          <p>I falafel migliori mai assaggiati, un piatto della casa e un tajine di vitello serviti in un locale pulitissimo, con un proprietario estremamente ospitale.</p>
+          <div class="who">Valentina B. <span>In coppia · Settembre 2025</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section location" id="dove">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Vieni a trovarci</span>
+        <h2>Dove siamo</h2>
+      </div>
+      <div class="loc-grid reveal">
+        <div class="loc-info">
+          <h2>Vi aspettiamo a Cuneo</h2>
+          <div class="loc-row">
+            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <div><span class="label">Indirizzo</span><p>Via S. Croce 38, 12100 Cuneo</p></div>
+          </div>
+          <div class="loc-row">
+            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h4l2 5-2.5 2a12 12 0 006 6l2-2.5 5 2v4a2 2 0 01-2 2A16 16 0 012 6a2 2 0 012-2z"/></svg>
+            <div><span class="label">Telefono</span><p><a href="tel:+393297163033">+39 329 716 3033</a></p></div>
+          </div>
+          <div class="loc-row">
+            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="1.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="16" y1="2" x2="16" y2="5"/></svg>
+            <div><span class="label">Servizio</span><p>Cena · si consiglia la prenotazione</p></div>
+          </div>
+          <div class="loc-row">
+            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+            <div><span class="label">Cucina</span><p>Egiziana, Marocchina, Mediterranea</p></div>
+          </div>
+          <a class="btn btn-solid" href="tel:+393297163033">Chiama per prenotare</a>
+        </div>
+        <div class="map-wrap">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Via%20S.%20Croce%2038%2C%2012100%20Cuneo%2C%20Italia&z=16&output=embed"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container">
+      <span class="eyebrow">Prenota il tuo tavolo</span>
+      <h2 style="margin-top:12px;">Un viaggio tra Cairo e Marrakech vi aspetta stasera</h2>
+      <span class="accent-script">Chiamateci per un tavolo, per un gruppo, o per scoprire il piatto del giorno.</span>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="tel:+393297163033">329 716 3033</a>
+        <a class="btn" href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">Vedi Tripadvisor</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="logo.png" alt="Casa del Pascià">
+          <span class="brand-name">Casa del Pascià</span>
+        </div>
+        <p style="max-width:280px;">Ristorante egiziano e marocchino nel cuore di Cuneo. Cucina fatta al momento, spezie autentiche, tè alla menta versato al tavolo.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contatti</h5>
+        <a href="tel:+393297163033">+39 329 716 3033</a>
+        <p>Via S. Croce 38, 12100 Cuneo</p>
+      </div>
+      <div class="foot-col">
+        <h5>Link</h5>
+        <a href="#storia">Storia</a>
+        <a href="#menu">Menù</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">Tripadvisor ↗</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Casa del Pascià — Cuneo</span>
+      <span>Cucina Egiziana &amp; Marocchina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky header
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  });
+
+  // mobile nav toggle
+  const mobileNav = document.getElementById('mobileNav');
+  document.querySelectorAll('#mobileNav a').forEach(a=>{
+    a.addEventListener('click', ()=> mobileNav.style.display='none');
+  });
+  const burgerBtn = document.querySelector('.burger');
+  burgerBtn.addEventListener('click', ()=>{
+    mobileNav.style.display = (mobileNav.style.display === 'flex') ? 'none' : 'flex';
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
