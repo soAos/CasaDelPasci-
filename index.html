@@ -522,6 +522,210 @@
     outline:2px solid var(--gold-light);
     outline-offset:3px;
   }
+
+  /* ---------- MENU CHAT ASSISTANT ---------- */
+  #chatLauncher{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:200;
+    width:60px;height:60px;
+    border-radius:50%;
+    background:var(--gold);
+    border:1px solid var(--gold-light);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease, background .25s ease;
+  }
+  #chatLauncher:hover{transform:translateY(-3px);background:var(--gold-light);}
+  #chatLauncher svg{width:26px;height:26px;}
+  #chatLauncher .ping{
+    position:absolute;
+    top:-4px;right:-4px;
+    width:14px;height:14px;
+    background:var(--teal-soft);
+    border:2px solid var(--ink);
+    border-radius:50%;
+    animation:ping-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes ping-pulse{
+    0%,100%{transform:scale(1);opacity:1;}
+    50%{transform:scale(1.25);opacity:0.6;}
+  }
+
+  #chatPanel{
+    position:fixed;
+    right:24px;
+    bottom:98px;
+    z-index:199;
+    width:min(380px, calc(100vw - 40px));
+    height:min(560px, calc(100vh - 150px));
+    background:var(--teal-deep);
+    border:1px solid rgba(195,154,75,0.35);
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(16px) scale(0.98);
+    pointer-events:none;
+    transition:opacity .28s ease, transform .28s ease;
+  }
+  #chatPanel.open{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    pointer-events:auto;
+  }
+
+  .chat-head{
+    background:linear-gradient(135deg, var(--teal-mid), var(--ink));
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-bottom:1px solid rgba(195,154,75,0.3);
+    flex-shrink:0;
+  }
+  .chat-head img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--cream);}
+  .chat-head .ch-title{font-family:'Marcellus',serif;font-size:0.98rem;color:var(--gold-light);}
+  .chat-head .ch-sub{font-size:0.7rem;color:var(--sand);display:flex;align-items:center;gap:5px;margin-top:2px;}
+  .chat-head .dot{width:6px;height:6px;border-radius:50%;background:#7CD9A5;display:inline-block;}
+  .chat-close{
+    margin-left:auto;
+    background:none;border:none;color:var(--sand);
+    font-size:1.3rem;cursor:pointer;line-height:1;
+    padding:4px;
+  }
+  .chat-close:hover{color:var(--gold-light);}
+
+  .chat-body{
+    flex:1;
+    overflow-y:auto;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    scroll-behavior:smooth;
+  }
+  .chat-body::-webkit-scrollbar{width:6px;}
+  .chat-body::-webkit-scrollbar-thumb{background:rgba(195,154,75,0.35);border-radius:3px;}
+
+  .msg{
+    max-width:88%;
+    padding:12px 14px;
+    border-radius:10px;
+    font-size:0.88rem;
+    line-height:1.55;
+    animation:msg-in .35s ease;
+  }
+  @keyframes msg-in{
+    from{opacity:0;transform:translateY(6px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .msg-bot{
+    background:rgba(195,154,75,0.08);
+    border:1px solid rgba(195,154,75,0.2);
+    color:var(--cream);
+    align-self:flex-start;
+    border-bottom-left-radius:2px;
+  }
+  .msg-user{
+    background:var(--gold);
+    color:var(--ink);
+    align-self:flex-end;
+    border-bottom-right-radius:2px;
+    font-weight:500;
+  }
+  .msg-bot .dish-portion{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    padding:5px 10px;
+    background:rgba(231,205,148,0.12);
+    border:1px solid rgba(195,154,75,0.4);
+    border-radius:20px;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+  }
+  .msg-bot .dish-name{
+    display:block;
+    font-family:'Marcellus',serif;
+    font-size:1rem;
+    color:var(--gold-light);
+    margin-bottom:6px;
+  }
+  .msg-bot .dish-tagline{color:var(--sand);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:8px;}
+
+  .chat-menu-groups{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .chat-cat-label{
+    font-size:0.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:6px 2px 2px;
+  }
+  .chat-chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    background:transparent;
+    border:1px solid rgba(195,154,75,0.45);
+    color:var(--cream);
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:0.8rem;
+    font-family:'Jost',sans-serif;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .chip:hover, .chip:focus-visible{
+    background:var(--gold);
+    color:var(--ink);
+    border-color:var(--gold);
+  }
+  .chip.chip-back{
+    border-color:rgba(195,154,75,0.7);
+    color:var(--gold-light);
+  }
+
+  .chat-footer{
+    padding:12px 16px;
+    border-top:1px solid rgba(195,154,75,0.2);
+    flex-shrink:0;
+    text-align:center;
+  }
+  .chat-footer button{
+    width:100%;
+    background:transparent;
+    border:1px solid rgba(195,154,75,0.4);
+    color:var(--sand);
+    padding:9px;
+    border-radius:20px;
+    font-size:0.76rem;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .chat-footer button:hover{background:rgba(195,154,75,0.12);color:var(--gold-light);}
+
+  @media(max-width:480px){
+    #chatPanel{right:12px;bottom:88px;width:calc(100vw - 24px);}
+    #chatLauncher{right:16px;bottom:16px;}
+  }
 </style>
 </head>
 <body>
@@ -821,6 +1025,258 @@
     </div>
   </div>
 </footer>
+
+<!-- ---------- MENU CHAT ASSISTANT ---------- -->
+<button id="chatLauncher" aria-haspopup="dialog" aria-expanded="false" aria-controls="chatPanel" aria-label="Apri l'assistente del menù">
+  <span class="ping"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.3 0-2.5-.28-3.6-.78L3 21l1.85-5.4A8.46 8.46 0 013 11.5 8.5 8.5 0 0111.5 3 8.5 8.5 0 0121 11.5z"/></svg>
+</button>
+
+<div id="chatPanel" role="dialog" aria-label="Assistente del menù" aria-hidden="true">
+  <div class="chat-head">
+    <img src="logo.png" alt="">
+    <div>
+      <div class="ch-title">Assistente del Menù</div>
+      <div class="ch-sub"><span class="dot"></span> Casa del Pascià</div>
+    </div>
+    <button class="chat-close" id="chatCloseBtn" aria-label="Chiudi la chat">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody" role="log" aria-live="polite"></div>
+  <div class="chat-footer">
+    <button id="chatMenuBtn" type="button">☰ Mostra tutti i piatti</button>
+  </div>
+</div>
+
+<script>
+  // ---- Menu data (portions are indicative; confirm with staff for the daily menu) ----
+  const MENU_DATA = {
+    "Antipasti & Sfizi": [
+      {
+        name:"Falafel di fave",
+        tagline:"Egiziano · Fritto al momento",
+        desc:"Polpette di fave fresche tritate con erbe e spezie, fritte al momento fino a renderle croccanti fuori e morbide dentro. Una delle specialità più amate della casa.",
+        portion:"Da condividere · 2 persone"
+      },
+      {
+        name:"Hummus con pane pita",
+        tagline:"Mediorientale · Vegetariano",
+        desc:"Crema di ceci, tahina, limone e olio d'oliva, servita calda con pane pita appena scaldato.",
+        portion:"Da condividere · 2 persone"
+      },
+      {
+        name:"Sambusak di carne",
+        tagline:"Egiziano · Sfizio caldo",
+        desc:"Fagottini di pasta sottile fritti, ripieni di carne speziata con cipolla e prezzemolo.",
+        portion:"Porzione singola · 1 persona"
+      }
+    ],
+    "Tajine & Piatti Unici": [
+      {
+        name:"Tajine d'agnello",
+        tagline:"Marocchino · Cottura lenta",
+        desc:"Agnello cotto lentamente nel tajine di terracotta con carciofi, carote e piselli: la carne si stacca dall'osso senza fatica, le verdure si sciolgono in bocca.",
+        portion:"Piatto unico · 1 persona"
+      },
+      {
+        name:"Tajine di vitello",
+        tagline:"Marocchino · Cottura lenta",
+        desc:"Vitello brasato a fuoco lento con spezie marocchine, servito nel tradizionale tajine di terracotta.",
+        portion:"Piatto unico · 1 persona"
+      },
+      {
+        name:"Tajine di pollo, limone e olive",
+        tagline:"Marocchino · Agrodolce",
+        desc:"Pollo cotto lentamente con limoni canditi e olive verdi, un classico della cucina di Marrakech.",
+        portion:"Piatto unico · 1 persona"
+      },
+      {
+        name:"Piatto della casa",
+        tagline:"Degustazione mista",
+        desc:"Una selezione degli assaggi più rappresentativi della cucina egiziana e marocchina della casa, pensata per scoprire più sapori in un solo piatto.",
+        portion:"Da condividere · 2+ persone"
+      }
+    ],
+    "Cous Cous": [
+      {
+        name:"Cous cous reale",
+        tagline:"Marocchino · Carne mista",
+        desc:"Semola cotta al vapore servita con un ricco misto di carni e verdure, nella tradizione delle grandi tavolate marocchine.",
+        portion:"Da condividere · 2-3 persone"
+      },
+      {
+        name:"Cous cous alle verdure",
+        tagline:"Marocchino · Vegetariano",
+        desc:"Semola al vapore con un ricco assortimento di verdure di stagione stufate.",
+        portion:"Piatto unico · 1 persona"
+      }
+    ],
+    "Rivisitazioni": [
+      {
+        name:"Tacos di pollo",
+        tagline:"Fusion · Croccante",
+        desc:"Pollo marinato, patate croccanti e maionese della casa in un tacos generoso: una rilettura originale che unisce street food e spezie orientali.",
+        portion:"Porzione singola · 1 persona"
+      }
+    ],
+    "Dolci": [
+      {
+        name:"Kunafa",
+        tagline:"Dolce simbolo del Medio Oriente",
+        desc:"Fili di pasta dorata e croccante, farciti e profumati di sciroppo: si serve calda, spesso condivisa a fine cena.",
+        portion:"Da condividere · 2 persone"
+      },
+      {
+        name:"Baklava",
+        tagline:"Pasta fillo, miele e frutta secca",
+        desc:"Strati sottilissimi di pasta fillo con frutta secca tritata, dolcificati con sciroppo di miele.",
+        portion:"Porzione singola · 1 persona"
+      },
+      {
+        name:"Muffin cioccolato e noci",
+        tagline:"Dolce della casa",
+        desc:"Muffin soffice con un cuore di cioccolato e un sentore di caffè, arricchito da noci croccanti.",
+        portion:"Porzione singola · 1 persona"
+      },
+      {
+        name:"Tortina mele, arancia e cocco",
+        tagline:"Dolce della casa · Pasta frolla",
+        desc:"Base di pasta frolla con un ripieno morbido di mele, arancia e cocco: fresca ma avvolgente.",
+        portion:"Porzione singola · 1 persona"
+      }
+    ],
+    "Rituale del Tè": [
+      {
+        name:"Tè alla menta",
+        tagline:"Il rituale marocchino",
+        desc:"Tè verde con foglie di menta fresca, versato dall'alto e servito caldo e dolce: il modo tradizionale di chiudere la cena a Marrakech.",
+        portion:"Servito per l'intero tavolo"
+      },
+      {
+        name:"Karkadè (tè all'ibisco)",
+        tagline:"Egiziano · Servito freddo o caldo",
+        desc:"Infuso rosso intenso di fiori d'ibisco, dal gusto acidulo e rinfrescante, molto amato in Egitto.",
+        portion:"Porzione singola · 1 persona"
+      }
+    ]
+  };
+
+  const chatBody = document.getElementById('chatBody');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatLauncher = document.getElementById('chatLauncher');
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
+  const chatMenuBtn = document.getElementById('chatMenuBtn');
+  let chatStarted = false;
+
+  function scrollChatToBottom(){
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function addBotBubble(html){
+    const div = document.createElement('div');
+    div.className = 'msg msg-bot';
+    div.innerHTML = html;
+    chatBody.appendChild(div);
+    scrollChatToBottom();
+  }
+
+  function addUserBubble(text){
+    const div = document.createElement('div');
+    div.className = 'msg msg-user';
+    div.textContent = text;
+    chatBody.appendChild(div);
+    scrollChatToBottom();
+  }
+
+  function renderMenuChips(){
+    const wrap = document.createElement('div');
+    wrap.className = 'msg msg-bot';
+    wrap.style.maxWidth = '100%';
+
+    const intro = document.createElement('div');
+    intro.textContent = 'Scegli un piatto per scoprire descrizione e porzione:';
+    intro.style.marginBottom = '10px';
+    wrap.appendChild(intro);
+
+    const groups = document.createElement('div');
+    groups.className = 'chat-menu-groups';
+
+    Object.entries(MENU_DATA).forEach(([category, dishes])=>{
+      const label = document.createElement('div');
+      label.className = 'chat-cat-label';
+      label.textContent = category;
+      groups.appendChild(label);
+
+      const row = document.createElement('div');
+      row.className = 'chat-chip-row';
+      dishes.forEach(dish=>{
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip';
+        chip.textContent = dish.name;
+        chip.addEventListener('click', ()=> selectDish(dish));
+        row.appendChild(chip);
+      });
+      groups.appendChild(row);
+    });
+
+    wrap.appendChild(groups);
+    chatBody.appendChild(wrap);
+    scrollChatToBottom();
+  }
+
+  function selectDish(dish){
+    addUserBubble(dish.name);
+    setTimeout(()=>{
+      addBotBubble(`
+        <span class="dish-name">${dish.name}</span>
+        <span class="dish-tagline">${dish.tagline}</span>
+        ${dish.desc}
+        <span class="dish-portion">🍽 ${dish.portion}</span>
+      `);
+      setTimeout(()=>{
+        const div = document.createElement('div');
+        div.className = 'msg msg-bot';
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip chip-back';
+        chip.textContent = '← Vedi altri piatti';
+        chip.addEventListener('click', renderMenuChips);
+        div.appendChild(document.createTextNode('Vuoi scoprire un altro piatto?'));
+        div.appendChild(document.createElement('br'));
+        div.style.marginTop = '0';
+        div.appendChild(chip);
+        chip.style.marginTop = '10px';
+        chatBody.appendChild(div);
+        scrollChatToBottom();
+      }, 350);
+    }, 380);
+  }
+
+  function startChat(){
+    if(chatStarted) return;
+    chatStarted = true;
+    addBotBubble('Ciao! 👋 Sono l\'assistente del menù di Casa del Pascià. Clicca su un piatto e ti racconto di cosa si tratta e per quante persone è pensato.');
+    setTimeout(renderMenuChips, 300);
+  }
+
+  function openChat(){
+    chatPanel.classList.add('open');
+    chatPanel.setAttribute('aria-hidden','false');
+    chatLauncher.setAttribute('aria-expanded','true');
+    startChat();
+  }
+  function closeChat(){
+    chatPanel.classList.remove('open');
+    chatPanel.setAttribute('aria-hidden','true');
+    chatLauncher.setAttribute('aria-expanded','false');
+  }
+
+  chatLauncher.addEventListener('click', ()=>{
+    chatPanel.classList.contains('open') ? closeChat() : openChat();
+  });
+  chatCloseBtn.addEventListener('click', closeChat);
+  chatMenuBtn.addEventListener('click', renderMenuChips);
+</script>
 
 <script>
   // sticky header
