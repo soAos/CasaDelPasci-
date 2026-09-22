@@ -332,24 +332,11 @@
     max-width:460px;
     aspect-ratio:380/460;
   }
-  .locale-arch-outline{
-    position:absolute;
-    inset:0;
+  .locale-frame-svg{
+    display:block;
     width:100%;
     height:100%;
-    z-index:2;
-    pointer-events:none;
     filter:drop-shadow(0 20px 44px rgba(0,0,0,0.5));
-  }
-  .locale-photo{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center 35%;
-    clip-path:url(#archClipPath);
-    filter:saturate(0.92) contrast(1.03);
   }
 
   .features{
@@ -499,6 +486,106 @@
     font-family:'Marcellus',serif;
   }
   .review-card .who span{display:block;color:var(--sand);font-family:'Jost',sans-serif;font-size:0.72rem;margin-top:2px;}
+
+  /* ---------- REVIEW FORM ---------- */
+  .review-form-wrap{
+    max-width:640px;
+    margin:64px auto 0;
+    border-top:1px solid rgba(195,154,75,0.2);
+    padding-top:56px;
+  }
+  .review-form-head{text-align:center;margin-bottom:32px;}
+  .review-form-head h3{
+    font-size:clamp(1.6rem,3vw,2.1rem);
+    margin-top:10px;
+  }
+  .review-form-note{
+    color:var(--sand);
+    font-size:0.9rem;
+    max-width:440px;
+    margin:14px auto 0;
+  }
+
+  .review-form{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .rf-row{display:flex;flex-direction:column;gap:8px;}
+  .rf-row label{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+  }
+  .rf-row input[type="text"],
+  .rf-row textarea{
+    background:rgba(195,154,75,0.05);
+    border:1px solid rgba(195,154,75,0.3);
+    border-radius:4px;
+    padding:12px 14px;
+    color:var(--cream);
+    font-family:'Jost',sans-serif;
+    font-size:0.95rem;
+    resize:vertical;
+  }
+  .rf-row input[type="text"]::placeholder,
+  .rf-row textarea::placeholder{color:rgba(217,185,138,0.5);}
+  .rf-row input[type="text"]:focus,
+  .rf-row textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:rgba(195,154,75,0.09);
+  }
+
+  .star-input{display:flex;gap:6px;}
+  .star-btn{
+    background:none;
+    border:none;
+    font-size:1.8rem;
+    line-height:1;
+    color:rgba(195,154,75,0.3);
+    cursor:pointer;
+    padding:4px;
+    transition:color .2s ease, transform .15s ease;
+  }
+  .star-btn:hover{transform:scale(1.12);}
+  .star-btn.active{color:var(--gold);}
+
+  .rf-submit{
+    align-self:flex-start;
+    border:none;
+    cursor:pointer;
+    font-family:'Jost',sans-serif;
+  }
+  .rf-confirm{
+    font-size:0.85rem;
+    color:#8FBF6A;
+    min-height:1.2em;
+  }
+  .rf-confirm.error{color:#D98A6A;}
+
+  .review-form-tripadvisor{
+    text-align:center;
+    margin-top:32px;
+    font-size:0.85rem;
+    color:var(--sand);
+  }
+  .review-form-tripadvisor a{color:var(--gold-light);border-bottom:1px solid var(--gold);padding-bottom:1px;}
+
+  .review-card.user-review{border-color:rgba(195,154,75,0.4);}
+  .review-card .badge-user{
+    display:inline-block;
+    font-size:0.62rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:var(--gold-light);
+    padding:2px 8px;
+    border-radius:10px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
 
   /* ---------- LOCATION ---------- */
   .location{
@@ -875,14 +962,20 @@
       </div>
 
       <div class="about-illustration reveal">
-        <svg width="0" height="0" style="position:absolute">
-          <clipPath id="archClipPath" clipPathUnits="objectBoundingBox">
-            <path d="M0.079 1 V0.478 C0.079 0.217 0.263 0.043 0.5 0.043 C0.737 0.043 0.921 0.217 0.921 0.478 V1 Z"/>
-          </clipPath>
-        </svg>
         <div class="locale-frame">
-          <svg class="locale-arch-outline" viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg">
-            <!-- profilo esterno (chiuso, include la base) -->
+          <svg class="locale-frame-svg" viewBox="0 0 380 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <clipPath id="archClipPath">
+                <path d="M30 460V220C30 100 100 20 190 20C280 20 350 100 350 220V460Z"/>
+              </clipPath>
+            </defs>
+
+            <!-- foto, ritagliata esattamente sulla stessa forma della cornice -->
+            <image href="locale.jpg" xlink:href="locale.jpg" x="0" y="0" width="380" height="460"
+                   preserveAspectRatio="xMidYMid slice"
+                   clip-path="url(#archClipPath)"/>
+
+            <!-- profilo esterno -->
             <path d="M30 460V220C30 100 100 20 190 20C280 20 350 100 350 220V460Z" fill="none" stroke="#C39A4B" stroke-width="2.5"/>
             <!-- profilo interno decorativo -->
             <path d="M46 452V222C46 118 112 40 190 40C268 40 334 118 334 222V452Z" fill="none" stroke="#E7CD94" stroke-width="1" opacity="0.55"/>
@@ -905,7 +998,6 @@
               <path d="M350 220l6 6-6 6-6-6z"/>
             </g>
           </svg>
-          <img class="locale-photo" src="locale.jpg" alt="Interno di Casa del Pascià, Cuneo" loading="lazy">
         </div>
       </div>
     </div>
@@ -993,7 +1085,7 @@
         <span class="stars">★★★★★</span>
         <span class="count">Basato su 12 recensioni — <a href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">leggi su Tripadvisor ↗</a></span>
       </div>
-      <div class="review-grid">
+      <div class="review-grid" id="reviewGrid">
         <div class="review-card reveal">
           <span class="stars">★★★★★</span>
           <p>Accoglienza gentile fin dall'ingresso: falafel di fave sorprendenti, tajine d'agnello morbidissimo e un dolce alle mele e cocco da ricordare.</p>
@@ -1024,6 +1116,42 @@
           <p>I falafel migliori mai assaggiati, un piatto della casa e un tajine di vitello serviti in un locale pulitissimo, con un proprietario estremamente ospitale.</p>
           <div class="who">Valentina B. <span>In coppia · Settembre 2025</span></div>
         </div>
+      </div>
+
+      <div class="review-form-wrap reveal">
+        <div class="review-form-head">
+          <span class="eyebrow">La tua opinione conta</span>
+          <h3>Lascia una recensione</h3>
+          <p class="review-form-note">Racconta la tua esperienza da Casa del Pascià. La recensione verrà mostrata qui, in questa pagina, sul tuo browser.</p>
+        </div>
+
+        <form id="reviewForm" class="review-form" novalidate>
+          <div class="rf-row">
+            <label for="rfName">Il tuo nome</label>
+            <input type="text" id="rfName" name="rfName" maxlength="60" placeholder="Es. Marco R." required>
+          </div>
+
+          <div class="rf-row">
+            <label>La tua valutazione</label>
+            <div class="star-input" id="starInput" role="radiogroup" aria-label="Valutazione da 1 a 5 stelle">
+              <button type="button" class="star-btn" data-value="1" aria-label="1 stella">★</button>
+              <button type="button" class="star-btn" data-value="2" aria-label="2 stelle">★</button>
+              <button type="button" class="star-btn" data-value="3" aria-label="3 stelle">★</button>
+              <button type="button" class="star-btn" data-value="4" aria-label="4 stelle">★</button>
+              <button type="button" class="star-btn" data-value="5" aria-label="5 stelle">★</button>
+            </div>
+          </div>
+
+          <div class="rf-row">
+            <label for="rfText">La tua recensione</label>
+            <textarea id="rfText" name="rfText" rows="4" maxlength="500" placeholder="Cosa hai apprezzato di più? Piatti, accoglienza, atmosfera..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-solid rf-submit">Invia recensione</button>
+          <p id="rfConfirm" class="rf-confirm" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="review-form-tripadvisor">Vuoi che la tua recensione sia visibile a tutti? <a href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">Lasciala anche su Tripadvisor ↗</a></p>
       </div>
     </div>
   </section>
@@ -1379,6 +1507,97 @@
   burgerBtn.addEventListener('click', ()=>{
     mobileNav.style.display = (mobileNav.style.display === 'flex') ? 'none' : 'flex';
   });
+
+  // ---------- REVIEW FORM ----------
+  const REVIEW_STORAGE_KEY = 'cdp_user_reviews';
+  const reviewGrid = document.getElementById('reviewGrid');
+  const reviewForm = document.getElementById('reviewForm');
+  const starInput = document.getElementById('starInput');
+  const starButtons = starInput ? Array.from(starInput.querySelectorAll('.star-btn')) : [];
+  const rfConfirm = document.getElementById('rfConfirm');
+  let selectedRating = 0;
+
+  function setStars(value){
+    selectedRating = value;
+    starButtons.forEach(btn=>{
+      btn.classList.toggle('active', Number(btn.dataset.value) <= value);
+    });
+  }
+  starButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=> setStars(Number(btn.dataset.value)));
+  });
+
+  function loadStoredReviews(){
+    try{
+      return JSON.parse(localStorage.getItem(REVIEW_STORAGE_KEY)) || [];
+    }catch(e){ return []; }
+  }
+  function saveStoredReviews(list){
+    try{ localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(list)); }catch(e){}
+  }
+
+  function buildReviewCard(review){
+    const card = document.createElement('div');
+    card.className = 'review-card user-review reveal in';
+    const starsHtml = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+    card.innerHTML = `
+      <span class="stars">${starsHtml}</span>
+      <p></p>
+      <div class="who"></div>
+    `;
+    card.querySelector('p').textContent = review.text;
+    const who = card.querySelector('.who');
+    who.appendChild(document.createTextNode(review.name));
+    const badge = document.createElement('span');
+    badge.className = 'badge-user';
+    badge.textContent = 'Recensione del sito';
+    who.appendChild(badge);
+    const span = document.createElement('span');
+    span.textContent = review.date;
+    who.appendChild(span);
+    return card;
+  }
+
+  if(reviewGrid){
+    loadStoredReviews().forEach(review=>{
+      reviewGrid.insertBefore(buildReviewCard(review), reviewGrid.firstChild);
+    });
+  }
+
+  if(reviewForm){
+    reviewForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const nameField = document.getElementById('rfName');
+      const textField = document.getElementById('rfText');
+      const name = nameField.value.trim();
+      const text = textField.value.trim();
+
+      if(!name || !text || selectedRating < 1){
+        rfConfirm.textContent = 'Compila nome, recensione e valutazione prima di inviare.';
+        rfConfirm.classList.add('error');
+        return;
+      }
+      rfConfirm.classList.remove('error');
+
+      const review = {
+        name,
+        text,
+        rating: selectedRating,
+        date: new Date().toLocaleDateString('it-IT', { month:'long', year:'numeric' })
+      };
+
+      const stored = loadStoredReviews();
+      stored.push(review);
+      saveStoredReviews(stored);
+
+      reviewGrid.insertBefore(buildReviewCard(review), reviewGrid.firstChild);
+
+      reviewForm.reset();
+      setStars(0);
+      rfConfirm.textContent = 'Grazie! La tua recensione è stata pubblicata qui sotto.';
+      setTimeout(()=>{ rfConfirm.textContent = ''; }, 5000);
+    });
+  }
 
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
