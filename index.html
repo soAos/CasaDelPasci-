@@ -387,7 +387,15 @@
     background:rgba(195,154,75,0.18);
     border:1px solid rgba(195,154,75,0.18);
   }
-  @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+  
+    /* ---------- NAVBAR REFINEMENT ---------- */
+    .nav-wrap{padding:0 28px;}
+    .nav{min-height:82px;gap:26px;}
+    .nav-links{display:flex;align-items:center;justify-content:center;gap:34px;flex:1;margin-left:18px;}
+    .nav-links a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:8px 2px;white-space:nowrap;line-height:1;}
+    .nav-cta{flex:0 0 auto;min-width:150px;justify-content:center;text-align:center;white-space:nowrap;}
+    @media(max-width:1100px){.nav{gap:18px}.nav-links{gap:22px;margin-left:4px}.nav-wrap{padding:0 20px}.nav-cta{min-width:132px}}
+@media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:600px){.menu-grid{grid-template-columns:1fr;}}
 
   .dish{
@@ -1201,6 +1209,65 @@
     .dish,.feature,.review-card,.dish-photo img{transition:none !important;}
   }
 
+
+    /* === RESPONSIVE NAV OVERRIDE === */
+    /* Desktop: full navigation, hamburger hidden */
+    @media (min-width: 901px) {
+      .nav-toggle {
+        display: none !important;
+      }
+
+      .mobile-nav,
+      .nav-mobile {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: static !important;
+        transform: none !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .mobile-nav ul,
+      .nav-mobile ul {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1.25rem, 2.5vw, 2.75rem);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+    }
+
+    /* Small screens: compact hamburger + dropdown */
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-nav,
+      .nav-mobile {
+        display: none !important;
+      }
+
+      .mobile-nav.open,
+      .nav-mobile.open {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+    }
+    /* === END RESPONSIVE NAV OVERRIDE === */
+
 </style>
 </head>
 <body>
@@ -1219,7 +1286,7 @@
         <a href="#recensioni">Recensioni</a>
         <a href="#dove">Dove Siamo</a>
       </div>
-      <a class="btn nav-cta" href="tel:+393297163033">Prenota — 329 716 3033</a>
+      <a class="btn nav-cta" href="tel:+393297163033">Chiama e prenota</a>
       <button class="burger" aria-label="Apri menu" aria-controls="mobileNav" aria-expanded="false">☰</button>
     </nav>
   </div>
@@ -1228,7 +1295,7 @@
     <a href="#menu" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Menù</a>
     <a href="#recensioni" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Recensioni</a>
     <a href="#dove" style="padding:12px 0;border-bottom:1px solid rgba(195,154,75,0.15);">Dove Siamo</a>
-    <a class="btn btn-solid" style="margin-top:16px;text-align:center;justify-content:center;" href="tel:+393297163033">Prenota — 329 716 3033</a>
+    <a class="btn btn-solid" style="margin-top:16px;text-align:center;justify-content:center;" href="tel:+393297163033">Chiama e prenota</a>
   </div>
 </header>
 
@@ -1525,7 +1592,7 @@
       <h2 style="margin-top:12px;">Un viaggio tra Cairo e Marrakech vi aspetta stasera</h2>
       <span class="accent-script">Chiamateci per un tavolo, per un gruppo, o per scoprire il piatto del giorno.</span>
       <div class="hero-ctas">
-        <a class="btn btn-solid" href="tel:+393297163033">329 716 3033</a>
+        <a class="btn btn-solid" href="tel:+393297163033">Chiama e prenota</a>
         <a class="btn" href="https://www.tripadvisor.it/Restaurant_Review-g187853-d33230706-Reviews-Casa_Del_Pascia-Cuneo_Province_of_Cuneo_Piedmont.html" target="_blank" rel="noopener">Vedi Tripadvisor</a>
       </div>
     </div>
